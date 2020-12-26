@@ -5,9 +5,13 @@
 		public string Name
 		{ get; }
 
-		internal Class(string name)
+		public string Description
+		{ get; }
+
+		internal Class(string name, string description)
 		{
 			Name = name;
+			Description = description;
 		}
 	}
 }
