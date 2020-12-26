@@ -4,7 +4,12 @@
         Title="Менеджер" Height="450" Width="800" Loaded="mainWindowLoaded">
 	<TabControl>
 		<TabItem Header="Персонал">
-			<DataGrid Name="gridEmployees">
+			<DataGrid Name="gridEmployees" AutoGenerateColumns="False">
+				<DataGrid.Columns>
+					<DataGridTextColumn MinWidth="150" Header="Имя" Binding="{Binding Path=Name}" />
+					<DataGridTextColumn MinWidth="075" Header="Возраст" Binding="{Binding Path=AgeString}" />
+					<DataGridTextColumn MinWidth="250" Header="Классификация" Binding="{Binding Path=ClassificationString}" />
+				</DataGrid.Columns>
 			</DataGrid>
 		</TabItem>
 	</TabControl>
