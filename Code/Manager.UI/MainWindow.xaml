@@ -7,8 +7,26 @@
 			<DataGrid Name="gridEmployees" AutoGenerateColumns="False">
 				<DataGrid.Columns>
 					<DataGridTextColumn MinWidth="150" Header="Имя" Binding="{Binding Path=Name}" />
-					<DataGridTextColumn MinWidth="075" Header="Возраст" Binding="{Binding Path=AgeString}" />
-					<DataGridTextColumn MinWidth="250" Header="Классификация" Binding="{Binding Path=ClassificationString}" />
+					<DataGridTemplateColumn MinWidth="075" Header="Возраст">
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<TextBlock Text="{Binding Path=AgeString}" />
+									<Button Margin="2" Content="..." Click="editAgeClick" />
+								</StackPanel>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+					<DataGridTemplateColumn MinWidth="250" Header="Классификация">
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<TextBlock Text="{Binding Path=ClassificationString}" />
+									<Button Margin="2" Content="..." Click="editClassificationClick" />
+								</StackPanel>
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
 				</DataGrid.Columns>
 			</DataGrid>
 		</TabItem>

@@ -1,20 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
+using System.Threading;
 
 namespace Manager.Core.Staff
 {
-	public class Employee
+	public class Employee : INotifyPropertyChanged
 	{
+		private DateTime? _birthday;
+		private IDictionary<ClassificationMethod, Class> _classification;
+
 		public string Name
 		{ get; set; }
 
 		public DateTime? Birthday
-		{ get; set; }
+		{
+			get { return _birthday; }
+			set
+			{
+				_birthday = value;
+				raiseChanged(nameof(AgeString));
+			}
+		}
 
 		public IDictionary<ClassificationMethod, Class> Classification
-		{ get; } = new Dictionary<ClassificationMethod, Class>();
+		{
+			get { return _classification; }
+			set
+			{
+				_classification = value;
+				raiseChanged(nameof(ClassificationString));
+			}
+		}
 
 		public string AgeString
 		{
@@ -40,7 +58,25 @@ namespace Manager.Core.Staff
 		{
 			get
 			{
-				return string.Join(", ", Classification.Select(@class => $"{@class.Key.Name}: {@class.Value.Name}"));
+				return string.Join(", ", Classification.Where(@class => @class.Value != null).Select(@class => $"{@class.Key.Name}: {@class.Value.Name}"));
+			}
+		}
+
+		public Employee()
+		{
+			Classification = ClassificationMethod.All.ToDictionary(
+				method => method,
+				method => null as Class);
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		private void raiseChanged(string propertyName)
+		{
+			var handler = Volatile.Read(ref PropertyChanged);
+			if (handler != null)
+			{
+				handler(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
