@@ -4,7 +4,7 @@
         Title="Менеджер" Height="450" Width="800" Loaded="mainWindowLoaded">
 	<TabControl>
 		<TabItem Header="Персонал">
-			<DataGrid Name="gridEmployees" AutoGenerateColumns="False">
+			<DataGrid Name="_gridEmployees" AutoGenerateColumns="False">
 				<DataGrid.Columns>
 					<DataGridTextColumn MinWidth="150" Header="Имя" Binding="{Binding Path=Name}" />
 					<DataGridTemplateColumn MinWidth="075" Header="Возраст">

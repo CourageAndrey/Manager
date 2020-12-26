@@ -30,7 +30,7 @@ namespace Manager.UI
 			//testEmployee.Classification[ClassificationMethod.Litvak] = ClassificationMethod.Litvak.Classes.First();
 			testEmployee.Classification[ClassificationMethod.SevenRadicals] = ClassificationMethod.SevenRadicals.Classes.First();
 
-			gridEmployees.ItemsSource = new List<Employee>
+			_gridEmployees.ItemsSource = new List<Employee>
 			{
 				testEmployee,
 			};
